@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1459383870 source:d:\clase 06 - cadenas de caracteres\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1459384087 source:f:\utn\programacion i\clase 06 - cadenas de caracteres\ejercicio imprimir nombre y apellido\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+

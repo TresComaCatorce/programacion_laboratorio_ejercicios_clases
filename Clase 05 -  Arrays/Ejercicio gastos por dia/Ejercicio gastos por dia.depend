@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1459293811 source:d:\ejercicio gastos por dia\main.c
+	<stdio.h>
+	<stdlib.h>
+

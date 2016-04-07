@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1458772735 source:d:\clase04\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1458777214 source:d:\clase04\misfunciones.c
+
+1458777300 source:d:\clase04\prototipos.c
+
