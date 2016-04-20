@@ -8,6 +8,7 @@
 int preguntarDeseaContinuar();
 
 int esEntero(float numero);
-int esStringCero(char* cadena)
+int esStringCero(char* cadena);
+int buildMenu(char menu[], int opcionMin, int opcionMax, int cantidadPreguntas, char mensajeError[]);
 
-int getInt(int* retorno, char* mensaje, int minimo, int maximo, char* msjError);
+short int getInt(int* retorno, char mensaje[], short int tieneMinimo, short int tieneMaximo, int minimo, int maximo, char msjError[]);
