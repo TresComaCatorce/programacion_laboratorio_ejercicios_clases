@@ -42,11 +42,11 @@ int preguntarDeseaContinuar()
 }
 
 
-/** \brief Valida si un número es entero, o con decimal.
+/** \brief Valida si una variable float es tiene o no decimal.
  *
- * \param float Número a analizar.
+ * \param numero (float) Número a analizar.
  *
- * \return int Si el número es entero 1(uno), si el número tiene decimales 0(cero).
+ * \return (int) Si el número no tiene decimales [1], si el número tiene decimales [0].
  *
  */
 int esEntero(float numero)
@@ -66,9 +66,9 @@ int esEntero(float numero)
 
 /** \brief Analiza una cádena de caracteres y nos dice si dicha cádena es exactamente igual a "0".
  *
- * \param char[] Cádena a analizar.
+ * \param cadena (char[]) Cádena a analizar.
  *
- * \return int Si no es una cadena de la forma "0" retorna 0(cero). Si la cadena es igual a "0" retorna 1(uno).
+ * \return (int) Si no es una cadena de la forma "0" retorna [0], si la cadena es igual a "0" retorna [1].
  *
  */
 int esStringCero(char* cadena)
@@ -86,13 +86,13 @@ int esStringCero(char* cadena)
 
 /** \brief Muestra un mensaje, lee una entrada por teclado, valida que sea entero y que no sobrepase los límites dados.
  *
- * \param int* Donde se almacena el entero, solo en caso de ingreso exitoso.
+ * \param retorno (int*) Dirección donde se almacena el entero, solo en caso de ingreso exitoso.
   *
- * \param char* Mensaje mostrado al usuario cuando se pide el ingreso.
+ * \param mensaje (char*) Mensaje mostrado al usuario cuando se pide el ingreso.
   *
- * \param int Límite inferior.
+ * \param minimo (int) Límite inferior.
   *
- * \param int Límite superior.
+ * \param maximo (int) Límite superior.
  *
  * \return char* Mensaje que se muestra al usuario en caso de error.
  *

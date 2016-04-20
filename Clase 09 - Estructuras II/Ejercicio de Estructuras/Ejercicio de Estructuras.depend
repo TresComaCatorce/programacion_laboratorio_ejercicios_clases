@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1461113842 source:d:\ferrero\ejerciciosclases\clase 09 - estructuras ii\ejercicio de estructuras\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"biblioteca.h"
+
+1461113727 d:\ferrero\ejerciciosclases\clase 09 - estructuras ii\ejercicio de estructuras\biblioteca.h
+
+1461113965 source:d:\ferrero\ejerciciosclases\clase 09 - estructuras ii\ejercicio de estructuras\biblioteca.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<windows.h>
+	"biblioteca.h"
+

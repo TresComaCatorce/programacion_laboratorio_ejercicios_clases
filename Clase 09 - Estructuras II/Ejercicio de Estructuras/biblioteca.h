@@ -1,12 +1,13 @@
+typedef struct{
+    int legajo;
+    char apellido[31];
+    char nombre[31];
+    float salario;
+    short int sector; /*-- 1 Contabilidad - 2 Administracion - 3 Compras - 4 Ventas --*/
+    short int estado; /*-- 0 borrado - 1 NO Borrado --*/
+}empleado;
 
 //Prototipos de funciones
-int buildMenu(void);
-int agregarPersona(persona personas[]);
-void imprimirListaOrdenadaAlfabeticamente(persona persona);
-
-typedef struct{
-    short int edad;
-    short int estado=0;
-    char dni[9];
-    char nombre[31];
-}persona;
+int buildMenu(char menu[], int opcionMin, int opcionMax, int cantidadPreguntas, char mensajeError[]);
+int agregarEmpleado(empleado empleados[], int largo);
+//void imprimirListaOrdenadaAlfabeticamente(persona persona);
