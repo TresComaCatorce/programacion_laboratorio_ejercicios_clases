@@ -118,7 +118,7 @@ int buildMenu(char menu[], int opcionMin, int opcionMax, int cantidadPreguntas, 
             return respuesta;
         }
         contadorIntentos++;
-    }while(contadorIntentos<cantidadPreguntas);
+    }while( contadorIntentos < cantidadPreguntas );
 
     return -1;
 }
@@ -141,7 +141,6 @@ short int getInt(int* miEntero, char mensaje[], short int tieneMinimo, short int
 {
     char buffer[601]; //Buffer para lectura de la entrada por teclado del usuario.
     int aux; //Auxiliar utilizado para analizar maximos y minimos sin asignar.
-    short int esCero;
 
     system("cls");
     printf("%s", mensaje);
@@ -156,7 +155,7 @@ short int getInt(int* miEntero, char mensaje[], short int tieneMinimo, short int
             system("cls");
             printf("%s\n", msjError);
             Sleep(2000);
-            return -1; //Retorno codigo de error en el ingreso.
+            return -1;
         }
         else //Si no es error se chequean maximos y minimos, etc.
         {
@@ -219,7 +218,7 @@ short int getInt(int* miEntero, char mensaje[], short int tieneMinimo, short int
             }
         }
     }
-    else //Si el usuario ingreso "0", se asigna [0] a 'miNumero'
+    else //Si el usuario ingreso "0".
     {
         //Si NO tiene minimo y NO tiene maximo.
             if(!tieneMinimo && !tieneMaximo)

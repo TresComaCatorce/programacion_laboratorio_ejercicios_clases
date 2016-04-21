@@ -1,2 +1,4 @@
+
+
 //Prototipos de funciones
-short int run(void);
+short int runPersonas(void);
