@@ -44,3 +44,31 @@
 
 1461187931 d:\ferrerocristian\clases\programacion_laboratorio_ejercicios_clases\tp 02\libpersonas.h
 
+1461013011 source:f:\workspaces\workspacec\clases\programacion_laboratorio_ejercicios_clases\bibliotecas\operaciones\operaciones.c
+
+1461610316 source:f:\workspaces\workspacec\clases\programacion_laboratorio_ejercicios_clases\tp 02\main.c
+	<stdio.h>
+	<stdlib.h>
+	"../Bibliotecas/Utiles/Utiles.h"
+	"libPersonas.h"
+
+1461614985 f:\workspaces\workspacec\clases\programacion_laboratorio_ejercicios_clases\bibliotecas\utiles\utiles.h
+	<stdlib.h>
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+
+1461610316 f:\workspaces\workspacec\clases\programacion_laboratorio_ejercicios_clases\tp 02\libpersonas.h
+
+1461615876 source:f:\workspaces\workspacec\clases\programacion_laboratorio_ejercicios_clases\tp 02\libpersonas.c
+	"../Bibliotecas/Utiles/Utiles.h"
+	<windows.h>
+
+1461615616 source:f:\workspaces\workspacec\clases\programacion_laboratorio_ejercicios_clases\bibliotecas\utiles\utiles.c
+	<stdlib.h>
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+	<windows.h>
+	"Utiles.h"
+

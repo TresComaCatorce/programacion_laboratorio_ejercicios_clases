@@ -3,6 +3,7 @@
 #include <ctype.h>
 #include <string.h>
 #include <windows.h>
+#include "Utiles.h"
 
 /** \brief Pregunta al usuario si desea continuar.
  *
@@ -98,6 +99,7 @@ int esStringCero(char* cadena)
 int buildMenu(char menu[], int opcionMin, int opcionMax, int cantidadPreguntas, char mensajeError[])
 {
     int respuesta;
+    short int error;
     int contadorIntentos=0;
 
     do
@@ -106,17 +108,14 @@ int buildMenu(char menu[], int opcionMin, int opcionMax, int cantidadPreguntas, 
         printf("%s", menu);
         printf("\n\nIngrese la opci""\xE0""n deseada: ");
         fflush(stdin);
-        scanf("%d", &respuesta);
+        error = getInt(&respuesta, "", 1, 1, opcionMin, opcionMax, mensajeError);
 
-        if( respuesta < opcionMin || respuesta > opcionMax)
-        {
-            printf("%s", mensajeError);
-            Sleep(2000);
-        }
-        else
+        if( error != -1)
         {
             return respuesta;
+            break;
         }
+
         contadorIntentos++;
     }while( contadorIntentos < cantidadPreguntas );
 
@@ -134,15 +133,15 @@ int buildMenu(char menu[], int opcionMin, int opcionMax, int cantidadPreguntas, 
  * \param maximo (int) Límite superior INCLUSIVO, en caso de no tenerlo se debe pasar [0].
  * \param msjError (char[]) Mensaje mostrado al usuario en caso de ingreso incorrecto.
  *
- * \return (int) Si el ingreso fue exitoso retorna [1], si no se ingreso un número válido retorna [-1].
+ * \return (int) [0]=Ingreso exitoso / [-1]=Ingreso no validado.
  *
  */
 short int getInt(int* miEntero, char mensaje[], short int tieneMinimo, short int tieneMaximo, int minimo, int maximo, char msjError[])
 {
     char buffer[601]; //Buffer para lectura de la entrada por teclado del usuario.
     int aux; //Auxiliar utilizado para analizar maximos y minimos sin asignar.
+    short int verificaMaxYMin;
 
-    system("cls");
     printf("%s", mensaje);
     fflush(stdin);
     gets(buffer); //Se lee el ingreso del usuario.
@@ -154,73 +153,42 @@ short int getInt(int* miEntero, char mensaje[], short int tieneMinimo, short int
         {
             system("cls");
             printf("%s\n", msjError);
-            Sleep(2000);
+            Sleep(1500);
             return -1;
         }
         else //Si no es error se chequean maximos y minimos, etc.
         {
-            //Si NO tiene minimo y NO tiene maximo.
-
+            verificaMaxYMin = verificarMaxYMinEntero(&aux, &tieneMinimo, &tieneMaximo, &minimo, &maximo);
+            if(verificaMaxYMin)
+            {
+                *miEntero = aux;
+                return 0;
+            }
+            else
+            {
+                system("cls");
+                printf("%s\n", msjError);
+                Sleep(1500);
+                return -1;
+            }
         }
     }
     else //Si el usuario ingreso "0".
     {
-        //Si NO tiene minimo y NO tiene maximo.
-            if(!tieneMinimo && !tieneMaximo)
+        //Se verifica Maximos y Minimos.
+        aux = 0;
+        verificaMaxYMin = verificarMaxYMinEntero(&aux, &tieneMinimo, &tieneMaximo, &minimo, &maximo);
+            if(verificaMaxYMin)
             {
-                *miEntero = 0;
-                return 1;
+                *miEntero = aux;
+                return 0;
             }
-
-            //Si tiene minimo y tiene maximo.
-            else if(tieneMinimo && tieneMaximo)
+            else
             {
-                if(0>=minimo && 0<=maximo)
-                {
-                    *miEntero = 0;
-                    return 1;
-                }
-                else
-                {
-                    system("cls");
-                    printf("%s\n", msjError);
-                    Sleep(2000);
-                    return -1;
-                }
-            }
-
-            //Si tiene minimo y NO tiene maximo.
-            else if(tieneMinimo && !tieneMaximo)
-            {
-                if(0>=minimo)
-                {
-                    *miEntero = 0;
-                    return 1;
-                }
-                else
-                {
-                    system("cls");
-                    printf("%s\n", msjError);
-                    Sleep(2000);
-                    return -1;
-                }
-            }
-
-            //Si NO tiene minimo y tiene maximo.
-            else if(!tieneMinimo && tieneMaximo)
-            {
-                if(0<=maximo)
-                {
-                    *miEntero = 0;
-                    return 1;
-                }
-                else
-                {
-                    system("cls");
-                    printf("%s\n", msjError);
-                    Sleep(2000);
-                    return -1;
-                }
+                system("cls");
+                printf("%s\n", msjError);
+                Sleep(1500);
+                return -1;
             }
     }
     return -1;
@@ -235,11 +203,12 @@ short int getInt(int* miEntero, char mensaje[], short int tieneMinimo, short int
  * \param minimo (int) Minimo a evaluar.
  * \param maximo (int) Máximo a evaluar.
  *
- * \return [0] Si no cumple con los límites / [1] Si cumple con los límites.
+ * \return [0]=No cumple con los límites / [1]=Cumple con los límites.
  *
  */
-short int verificarMaxYMin(int* numero, short int* tieneMinimo, short int* tieneMaximo, int* minimo, int*maximo)
+short int verificarMaxYMinEntero(int* numero, short int* tieneMinimo, short int* tieneMaximo, int* minimo, int* maximo)
 {
+    //Si NO tiene minimo NI máximo.
     if(!*tieneMinimo && !*tieneMaximo)
     {
         return 1;
@@ -283,4 +252,141 @@ short int verificarMaxYMin(int* numero, short int* tieneMinimo, short int* tiene
             return 0;
         }
     }
+    return 0;
+}
+
+
+
+
+/** \brief Muestra un mensaje, lee una entrada por teclado, valida que sea float y que no sobrepase los límites dados.
+ *
+ * \param miFloat (float*) Dirección donde se almacena el float, solo en caso de ingreso exitoso.
+ * \param mensaje (char[]) Mensaje mostrado al usuario cuando se pide el ingreso.
+ * \param tieneMinimo (short int) Si NO tiene mínimo debe pasarse [0], si tiene mínimo debe pasarse [1].
+ * \param tieneMaximo ( short int) Si NO tiene máximo debe pasarse [0], si tiene máximo debe pasarse [1].
+ * \param minimo (float) Límite inferior INCLUSIVO, en caso de no tenerlo se debe pasar [0].
+ * \param maximo (float) Límite superior INCLUSIVO, en caso de no tenerlo se debe pasar [0].
+ * \param msjError (char[]) Mensaje mostrado al usuario en caso de ingreso incorrecto.
+ *
+ * \return (int) [0]=Ingreso exitoso / [-1]=Ingreso no validado.
+ *
+ */
+
+short int getFloat(float* miFloat, char mensaje[], short int tieneMinimo, short int tieneMaximo, float minimo, float maximo, char msjError[])
+{
+    char buffer[601]; //Buffer para lectura de la entrada por teclado del usuario.
+    float aux; //Auxiliar utilizado para analizar maximos y minimos sin asignar.
+    short int verificaMaxYMin;
+
+    printf("%s", mensaje);
+    fflush(stdin);
+    gets(buffer); //Se lee el ingreso del usuario.
+
+    if(!esStringCero(buffer)) //Si el usuario NO ingresó "0" se usa atoi (ya que atoi retorna [0] como código de error y no se puede diferenciar error del ingreso de "0").
+    {
+        aux = atof(buffer);
+        if(aux == 0) //Si 'aux' es igual a [0] significa que hay error (porque ya se validó que sea !=0).
+        {
+            system("cls");
+            printf("%s\n", msjError);
+            Sleep(1500);
+            return -1;
+        }
+        else //Si no es error se chequean maximos y minimos, etc.
+        {
+            verificaMaxYMin = verificarMaxYMinFloat(&aux, &tieneMinimo, &tieneMaximo, &minimo, &maximo);
+            if(verificaMaxYMin)
+            {
+                *miFloat = aux;
+                return 0;
+            }
+            else
+            {
+                system("cls");
+                printf("%s\n", msjError);
+                Sleep(1500);
+                return -1;
+            }
+        }
+    }
+    else //Si el usuario ingreso "0".
+    {
+        //Se verifica Maximos y Minimos.
+        aux = 0;
+        verificaMaxYMin = verificarMaxYMinFloat(&aux, &tieneMinimo, &tieneMaximo, &minimo, &maximo);
+            if(verificaMaxYMin)
+            {
+                *miFloat = aux;
+                return 0;
+            }
+            else
+            {
+                system("cls");
+                printf("%s\n", msjError);
+                Sleep(1500);
+                return -1;
+            }
+    }
+    return -1;
+}
+
+
+/** \brief (Función de uso interno de "getFloat") Verifica que un número se encuentre entre el minimo y el máximo dado.
+ *
+ * \param numero (float*) Numero a evaluar.
+ * \param tieneMinimo (short int*) [0]=No tiene minimo [1]=Tiene minimo.
+ * \param tieneMaximo (short int*) [0]=No tiene máximo [1]=Tiene máximo.
+ * \param minimo (float) Minimo a evaluar.
+ * \param maximo (float) Máximo a evaluar.
+ *
+ * \return [0]=No cumple con los límites / [1]=Cumple con los límites.
+ *
+ */
+short int verificarMaxYMinFloat(float* numero, short int* tieneMinimo, short int* tieneMaximo, float* minimo, float* maximo)
+{
+    //Si NO tiene minimo NI máximo.
+    if(!*tieneMinimo && !*tieneMaximo)
+    {
+        return 1;
+    }
+
+    //Si tiene minimo y tiene maximo.
+    else if(*tieneMinimo && *tieneMaximo)
+    {
+        if(*numero >= *minimo && *numero <= *maximo)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    //Si tiene minimo y NO tiene maximo.
+    else if(*tieneMinimo && !*tieneMaximo)
+    {
+        if(*numero >= *minimo)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    //Si NO tiene minimo y tiene maximo.
+    else if(!*tieneMinimo && *tieneMaximo)
+    {
+        if(*numero <= *maximo)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    return 0;
 }

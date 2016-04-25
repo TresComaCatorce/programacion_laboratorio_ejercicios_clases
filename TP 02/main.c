@@ -3,8 +3,17 @@
 #include "../Bibliotecas/Utiles/Utiles.h"
 #include "libPersonas.h"
 
-int main()
+void main()
 {
-    runPersonas();
-    return 0;
+    int returnedValue;
+    returnedValue = runPersonas();
+
+    if(returnedValue == 0)
+    {
+        "SYSTEM OFF"
+    }
+    else
+    {
+        "SYSTEM OFF EXCEED"
+    }
 }
