@@ -160,62 +160,7 @@ short int getInt(int* miEntero, char mensaje[], short int tieneMinimo, short int
         else //Si no es error se chequean maximos y minimos, etc.
         {
             //Si NO tiene minimo y NO tiene maximo.
-            if(!tieneMinimo && !tieneMaximo)
-            {
-                *miEntero = aux;
-                return 1;
-            }
 
-            //Si tiene minimo y tiene maximo.
-            else if(tieneMinimo && tieneMaximo)
-            {
-                if(aux>=minimo && aux<=maximo)
-                {
-                    *miEntero = aux;
-                    return 1;
-                }
-                else
-                {
-                    system("cls");
-                    printf("%s\n", msjError);
-                    Sleep(2000);
-                    return -1;
-                }
-            }
-
-            //Si tiene minimo y NO tiene maximo.
-            else if(tieneMinimo && !tieneMaximo)
-            {
-                if(aux>=minimo)
-                {
-                    *miEntero = aux;
-                    return 1;
-                }
-                else
-                {
-                    system("cls");
-                    printf("%s\n", msjError);
-                    Sleep(2000);
-                    return -1;
-                }
-            }
-
-            //Si NO tiene minimo y tiene maximo.
-            else if(!tieneMinimo && tieneMaximo)
-            {
-                if(aux<=maximo)
-                {
-                    *miEntero = aux;
-                    return 1;
-                }
-                else
-                {
-                    system("cls");
-                    printf("%s\n", msjError);
-                    Sleep(2000);
-                    return -1;
-                }
-            }
         }
     }
     else //Si el usuario ingreso "0".
@@ -279,4 +224,63 @@ short int getInt(int* miEntero, char mensaje[], short int tieneMinimo, short int
             }
     }
     return -1;
+}
+
+
+/** \brief (Función de uso interno de "getInt") Verifica que un número se encuentre entre el minimo y el máximo dado.
+ *
+ * \param numero (int*) Numero a evaluar.
+ * \param tieneMinimo (short int*) [0]=No tiene minimo [1]=Tiene minimo.
+ * \param tieneMaximo (short int*) [0]=No tiene máximo [1]=Tiene máximo.
+ * \param minimo (int) Minimo a evaluar.
+ * \param maximo (int) Máximo a evaluar.
+ *
+ * \return [0] Si no cumple con los límites / [1] Si cumple con los límites.
+ *
+ */
+short int verificarMaxYMin(int* numero, short int* tieneMinimo, short int* tieneMaximo, int* minimo, int*maximo)
+{
+    if(!*tieneMinimo && !*tieneMaximo)
+    {
+        return 1;
+    }
+
+    //Si tiene minimo y tiene maximo.
+    else if(*tieneMinimo && *tieneMaximo)
+    {
+        if(*numero >= *minimo && *numero <= *maximo)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    //Si tiene minimo y NO tiene maximo.
+    else if(*tieneMinimo && !*tieneMaximo)
+    {
+        if(*numero >= *minimo)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    //Si NO tiene minimo y tiene maximo.
+    else if(!*tieneMinimo && *tieneMaximo)
+    {
+        if(*numero <= *maximo)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
 }
