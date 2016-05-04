@@ -41,7 +41,7 @@ int main()
                 break;
 
             case 2:
-                //doModificar( proveedores, CANT_PROVEEDORES, productos , CANT_PRODUCTOS );
+                modificar( proveedores, CANT_PROVEEDORES, productos , CANT_PRODUCTOS );
                 break;
 
             case 3:

@@ -28,3 +28,41 @@
 
 1462321260 d:\ferrero\ejerciciosclases\clase 13 - modelo de parcial\modeloparcial1\estructuras.h
 
+1461857777 source:c:\users\cristian.ferrero\appdata\local\workspacec\clases\programacion_laboratorio_ejercicios_clases\bibliotecas\operaciones\operaciones.c
+
+1462364026 source:c:\users\cristian.ferrero\appdata\local\workspacec\clases\programacion_laboratorio_ejercicios_clases\bibliotecas\utiles\utiles.c
+	<stdlib.h>
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+	<windows.h>
+	"Utiles.h"
+
+1461857777 c:\users\cristian.ferrero\appdata\local\workspacec\clases\programacion_laboratorio_ejercicios_clases\bibliotecas\utiles\utiles.h
+	<stdlib.h>
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+
+1462361949 source:c:\users\cristian.ferrero\appdata\local\workspacec\clases\programacion_laboratorio_ejercicios_clases\clase 13 - modelo de parcial\modeloparcial1\libprovprod.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<windows.h>
+	"libProvProd.h"
+	"estructuras.h"
+
+1462361949 c:\users\cristian.ferrero\appdata\local\workspacec\clases\programacion_laboratorio_ejercicios_clases\clase 13 - modelo de parcial\modeloparcial1\libprovprod.h
+	"estructuras.h"
+
+1462361949 c:\users\cristian.ferrero\appdata\local\workspacec\clases\programacion_laboratorio_ejercicios_clases\clase 13 - modelo de parcial\modeloparcial1\estructuras.h
+
+1462362481 source:c:\users\cristian.ferrero\appdata\local\workspacec\clases\programacion_laboratorio_ejercicios_clases\clase 13 - modelo de parcial\modeloparcial1\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<windows.h>
+	"libProvProd.h"
+	"../../Bibliotecas/Utiles/Utiles.h"
+	"estructuras.h"
+

@@ -390,3 +390,6 @@ short int verificarMaxYMinFloat(float* numero, short int* tieneMinimo, short int
     }
     return 0;
 }
+
+
+
