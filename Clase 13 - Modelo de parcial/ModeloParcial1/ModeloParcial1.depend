@@ -1,0 +1,30 @@
+# depslib dependency file v1.0
+1461103036 source:d:\ferrero\ejerciciosclases\bibliotecas\operaciones\operaciones.c
+
+1462313798 source:d:\ferrero\ejerciciosclases\bibliotecas\utiles\utiles.c
+	<stdlib.h>
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+	<windows.h>
+	"Utiles.h"
+
+1462313798 d:\ferrero\ejerciciosclases\bibliotecas\utiles\utiles.h
+	<stdlib.h>
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+
+1462321674 source:d:\ferrero\ejerciciosclases\clase 13 - modelo de parcial\modeloparcial1\libprovprod.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<windows.h>
+	"libProvProd.h"
+	"estructuras.h"
+
+1462321661 d:\ferrero\ejerciciosclases\clase 13 - modelo de parcial\modeloparcial1\libprovprod.h
+	"estructuras.h"
+
+1462321260 d:\ferrero\ejerciciosclases\clase 13 - modelo de parcial\modeloparcial1\estructuras.h
+
