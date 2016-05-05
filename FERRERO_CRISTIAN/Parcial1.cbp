@@ -40,6 +40,14 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="lib.h" />
+		<Unit filename="libComentarios.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libComentarios.h" />
+		<Unit filename="libUsuarios.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libUsuarios.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

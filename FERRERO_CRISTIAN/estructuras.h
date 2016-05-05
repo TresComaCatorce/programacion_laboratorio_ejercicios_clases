@@ -1,6 +1,13 @@
 #ifndef __DEF
 
 #define __DEF
+
+#define CLEAR_SCREEN "cls" //cambiar por "reset" para linux
+#define SLEEP_TIME 1100
+
+#define CANT_USUARIOS 10
+#define CANT_COMENTARIOS 100
+
 typedef struct
 {
     char nickName[15]; //Case sensitive

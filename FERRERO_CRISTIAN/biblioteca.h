@@ -12,7 +12,7 @@ short int getFloat(float* retorno, char mensaje[], short int tieneMinimo, short 
 short int verificarMaxYMinFloat(float* numero, short int* tieneMinimo, short int* tieneMaximo, float* minimo, float* maximo);
 
 
-short int getString(char *miCadena, int largoMiCadena, char *mensaje, char *msjError);
+short int getString(char *miCadena, int largoMiCadena, char *mensaje, char *msjError, short int largoMinimo );
 short int getStringConIntentos(char* miCadena, int largoMiCadena, char* mensaje, char* msjError, short int intentos);
 short int normalizarString(char *miCadena, int largoMiCadena, int tipoNormalizacion);
 

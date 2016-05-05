@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "biblioteca.h"
 #include "lib.h"
+#include "libUsuarios.h"
+#include "libComentarios.h"
 
 #include "estructuras.h"
 
-#define CANT_USUARIOS 10
-#define CANT_COMENTARIOS 100
 
 int main()
 {
@@ -18,7 +19,7 @@ int main()
     initUsuarios(usuarios, CANT_USUARIOS);
     initComentarios(comentarios, CANT_COMENTARIOS);
 
-    //cargarUsuariosFake(usuarios, CANT_USUARIOS);
+    cargarUsuariosFake(usuarios, CANT_USUARIOS);
 
 
 
@@ -66,6 +67,9 @@ int main()
                 break;
             case 8:
                 //SALIR;
+                break;
+            case 9:
+                imprimirListaUsuarios( usuarios, CANT_USUARIOS );
                 break;
         }
 

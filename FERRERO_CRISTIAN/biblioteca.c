@@ -374,7 +374,7 @@ short int verificarMaxYMinFloat(float* numero, short int* tieneMinimo, short int
  * \return [0]=Se obtubo exitosamente el string / [-1]=Error al obtener el string.
  *
  */
-short int getString(char *miCadena, int largoMiCadena, char *mensaje, char *msjError)
+short int getString(char *miCadena, int largoMiCadena, char *mensaje, char *msjError, short int largoMinimo)
 {
     char buffer[601];
     int largoAux;
@@ -385,7 +385,7 @@ short int getString(char *miCadena, int largoMiCadena, char *mensaje, char *msjE
 
     largoAux = strlen(buffer);
 
-    if( largoAux >= largoMiCadena || largoAux <= 0)
+    if( largoAux >= largoMiCadena || largoAux < largoMinimo)
     {
         system("cls");
         printf("%s", msjError);
@@ -528,32 +528,6 @@ short int normalizarString(char *miCadena, int largoMiCadena, int tipoNormalizac
  */
 short int preguntarPorSiOPorNo(char* mensaje, char* msjError, int intentos)
 {
-
-
-/** \brief Verifica si un string es igual a "", es decir, un string vacio.
- *
- * \param cadena (*char) Cadena de caracteres a verificar.
- * \param largoCadena (int) Largo de la cadena.
- * \return [0]=No es string vacio / [1]=Es string vacio / [-1]=Error al leer el string.
- *
- */
-int esStringVacio( char *cadena, int largoCadena )
-{
-    int retorno = -1;
-    if( cadena != NULL && largoCadena > 0 )
-    {
-        if( cadena[0]=='\0' )
-        {
-            retorno = 1;
-        }
-        else
-        {
-            retorno = 0;
-        }
-    }
-
-    return retorno;
-}
     short int retorno = -1;
     int contadorIntentos = 0;
     char buffer[601]; //Buffer donde se lee la respuesta.
@@ -563,7 +537,7 @@ int esStringVacio( char *cadena, int largoCadena )
     do
     {
         //Se pide ingreso de 's' o 'n' al usuario.
-        error = getString(buffer, 601, mensaje, msjError);
+        error = getString(buffer, 601, mensaje, msjError, 1);
 
         if( error == 0 )
         {
@@ -603,6 +577,32 @@ int esStringVacio( char *cadena, int largoCadena )
         contadorIntentos++;
 
     }while( contadorIntentos < intentos );
+
+    return retorno;
+}
+
+
+/** \brief Verifica si un string es igual a "", es decir, un string vacio.
+ *
+ * \param cadena (*char) Cadena de caracteres a verificar.
+ * \param largoCadena (int) Largo de la cadena.
+ * \return [0]=No es string vacio / [1]=Es string vacio / [-1]=Error al leer el string.
+ *
+ */
+int esStringVacio( char *cadena, int largoCadena )
+{
+    int retorno = -1;
+    if( cadena != NULL && largoCadena > 0 )
+    {
+        if( cadena[0]=='\0' )
+        {
+            retorno = 1;
+        }
+        else
+        {
+            retorno = 0;
+        }
+    }
 
     return retorno;
 }
