@@ -36,6 +36,10 @@
 		</Unit>
 		<Unit filename="biblioteca.h" />
 		<Unit filename="estructuras.h" />
+		<Unit filename="lib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="lib.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
