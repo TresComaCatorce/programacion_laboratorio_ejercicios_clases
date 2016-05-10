@@ -371,6 +371,7 @@ short int verificarMaxYMinFloat(float* numero, short int* tieneMinimo, short int
  * \param largoMiCadena (int) Largo de 'miCadena'.
  * \param mensaje (char[]) Mensaje que se muestra al usuario al pedir el ingreso.
  * \param msjError (char[]) Mensaje mostrado al usuario en caso de ingreso erroneo.
+ * \param largoMinimo (short int) Cantidad de caracteres minimos que puede tener el string.
  * \return [0]=Se obtubo exitosamente el string / [-1]=Error al obtener el string.
  *
  */

@@ -148,7 +148,7 @@ int buscarLugarLibreUsuarios( usuario *usuarios, int largoUsuarios )
     int retorno = -1;
     int i;
 
-    if( usuarios != 0 && largoUsuarios > 0 )
+    if( usuarios != NULL && largoUsuarios > 0 )
     {
         for( i=0 ; i<largoUsuarios ; i++ )
         {
@@ -191,36 +191,6 @@ int verificarDisponibilidadNickName( usuario *usuarios, int largoUsuarios, char 
 
     return retorno;
 }
-
-
-
-/** \brief Busca un usuario por el nick name indicado.
- *
- * \param usuarios (*usuario) Array de usuarios.
- * \param largoUsuarios (int) Largo del array.
- * \return Subindice del array donde se encuentra dicho usuario / [-1]=Si no se encuentra el usuario.
- *
- */
-int buscaUsuarioPorNickName( usuario *usuarios, int largoUsuarios, char *elNickName )
-{
-    int retorno = -1;
-    int i;
-
-    if( usuarios != NULL && largoUsuarios > 0 )
-    {
-        for( i=0 ; i<largoUsuarios ; i++ )
-        {
-            if( strcmp( usuarios[i].nickName, elNickName ) == 0 )
-            {
-                retorno = i;
-                break;
-            }
-        }
-    }
-
-    return retorno;
-}
-
 
 
 /** \brief Solicita el ingreso de los datos de un nuevo usuario.
@@ -267,7 +237,7 @@ int solicitarIngresoNuevoUsuario( usuario *usuarios, int largoUsuarios, int inde
                     error2 = normalizarString( auxUsuario.nombreReal, 51, 3 ); //Normalizo nombre ingresado con primera letra en mayúsculas, las demas en minúsculas.
 
 
-                    if( error == 0 )
+                    if( error == 0 && error2 == 0)
                     {
                         //Solicito el correo electronico
                         system(CLEAR_SCREEN);
@@ -289,3 +259,80 @@ int solicitarIngresoNuevoUsuario( usuario *usuarios, int largoUsuarios, int inde
 
     return retorno;
 }
+
+
+
+/** \brief
+ *
+ * \param usuarios (*usuario) Array de usuarios donde se va a guardar el nuevo usuario.
+ * \param largoUsuarios (int) Largo del array.
+ * \param intentos (int) Cantidad de intentos.
+ * \return (int) Subíndice del usuario del que se verificó usuario y contraseña. /[-1]=Argumentos inválidos / [-2]=Usuario incorrecto / [-3]=Clave incorrecta.
+ *
+ */
+int solicitarYVerificarUsuarioClave( usuario *usuarios, int largoUsuarios, int intentos )
+{
+    int retorno = -1;
+    int error;
+    int contadorIntentos = 0;
+    char auxNickName[15];
+    char auxClave[15];
+    int indexUsuario;
+
+    if( usuarios != NULL && largoUsuarios > 0 && intentos >= 0 )
+    {
+        do
+        {
+            system(CLEAR_SCREEN); //Solicito ingreso de nickname.
+            error = getString( auxNickName, 15, "Ingrese nick name: ", "\nEl nick name debe tener entre 4 y 14 caracteres.", 4 );
+            if( error == 0 ) //Si el ingreso esta entre los parametros validos.
+            {
+                //Obtengo el indice del usuario ingresado
+                indexUsuario = getUsuarioIndexByNickName( usuarios, largoUsuarios, auxNickName );
+
+                //Si existe el usuario en el array.
+                if( indexUsuario >= 0 )
+                {
+                    system(CLEAR_SCREEN);
+                    error = getString( auxClave, 15, "Ingrese la clave: ", "\nLa clave debe tener entre 4 y 14 caracteres.", 4 );
+
+                    if( strcmp( usuarios[indexUsuario].clave, auxClave ) == 0 )
+                    {
+                        retorno = indexUsuario;
+                        break;
+                    }
+                    else
+                    {
+                        retorno = -3;
+                        system(CLEAR_SCREEN);
+                        printf("\nClave incorrecta.\n\n");
+                        system("pause");
+                    }
+
+                }
+                //Si no existe el usuario en el array
+                else
+                {
+                    retorno = -2;
+                    system(CLEAR_SCREEN);
+                    printf("\nEl usuario no existe.\n\n");
+                    system("pause");
+                }
+            }
+            else
+            {
+                retorno = -2;
+            }
+
+            contadorIntentos++;
+
+        }while( contadorIntentos < intentos );
+    }
+
+    return retorno;
+}
+
+
+
+
+

@@ -34,12 +34,6 @@ void altaUsuario( usuario *usuarios, int largoUsuarios )
                 printf("\nIngreso exitoso.\n\n");
                 Sleep(SLEEP_TIME);
             }
-            else
-            {
-                system(CLEAR_SCREEN);
-                printf("\nError al ingresar el nuevo usuario.\n\n");
-                Sleep(SLEEP_TIME);
-            }
 
         }
         else
@@ -144,7 +138,7 @@ void modificarUsuario( usuario *usuarios, int largoUsuarios )
             //Busco el usuario ingresado dentro del array. Si existe obtengo su indice, sino -1.
             if( error == 0  )
             {
-                index = buscaUsuarioPorNickName( usuarios, largoUsuarios, auxNickName );
+                index = getUsuarioIndexByNickName( usuarios, largoUsuarios, auxNickName );
             }
             else
             {
@@ -207,74 +201,124 @@ void modificarUsuario( usuario *usuarios, int largoUsuarios )
 
 
 
-/** \brief Permite ingresar un nuevo comentario.
+/** \brief Permite añadir un nuevo comentario, verificando usuario y contraseña.
  *
- * \param
- * \param
- * \return
+ * \param usuarios (*usuario) Array de usuarios.
+ * \param largoUsuarios (int) Largo del array.
+ * \param comentarios (*comentario) Array de comentarios.
+ * \param largoComentarios (int) Largo del array.
  *
  */
 void nuevoComentario( usuario *usuarios, int largoUsuarios, comentario *comentarios, int largoComentarios )
 {
-    /*int error;
+    int error;
+    int cantUsuariosHabilitados;
+    int indexComentario;
     int indexUsuario;
     char auxNickName[15];
-    char auxClave[15];
     char auxTextoComentario[281];
+
 
     if( usuarios != NULL && comentarios != NULL && largoUsuarios > 0 && largoComentarios >0 )
     {
         system(CLEAR_SCREEN);
-        error = getString( auxNickName, 15, "Ingrese el usuario:", "El usuario no puede superar los 14 caracteres." );
-        if( error == 0 )
+        cantUsuariosHabilitados = contarUsuariosHabilitados( usuarios, largoUsuarios );
+
+        //Se verifica que existan usuarios habilitados
+        if( cantUsuariosHabilitados >= 0 )
         {
-            indexUsuario = buscaUsuarioPorNickName( usuarios, largoUsuarios, auxNickName );
+            indexComentario = buscarLugarLibreComentarios( comentarios, largoComentarios );
+            indexUsuario = solicitarYVerificarUsuarioClave( usuarios, largoUsuarios, ATTEMPTS );
 
-            if( indexUsuario >= 0 )
+            //Si se verifico el usuario y clave. Y hay lugar libre para el comentario.
+            if( indexUsuario >= 0 && indexComentario >= 0 )
             {
-                system(CLEAR_SCREEN);
-                error = getString( auxClave, 15, "Ingrese la clave:", "El usuario no puede superar los 14 caracteres." );
+                error = getStringConIntentos( auxTextoComentario, 281, "Ingrese el texto del comentario: ", "\nEl comentario debe tener entre 1 y 280 caracteres", 3 );
 
-                if( strcmp( usuarios[indexUsuario].clave, auxClave ) == 0 )
+                if( error == 0 )//Aquí se crea el comentario.
                 {
-                    system(CLEAR_SCREEN);
-                    error = getString( auxTextoComentario, 281, "Ingrese el texto del comentario: ", "Error el mensaje puede ser, como maximo de 280 caracteres" );
-
-                    if( error == 0 )
-                    {
-                        crearComentario( comentarios, largoComentarios, auxNickName, auxTextoComentario );
-                    }
+                    strcpy( auxNickName, usuarios[indexUsuario].nickName );
+                    crearComentario( comentarios, largoComentarios, indexComentario, auxNickName, auxTextoComentario );
                 }
-                else
-                {
-                    system(CLEAR_SCREEN);
-                    printf("Clave incorrecta.\n\n");
-                    system("pause");
-                }
-
             }
-            else
+            else if( indexComentario == -1 )
             {
-                system(CLEAR_SCREEN);
-                printf("Usuario invalido.\n\n");
+                printf("\nNo hay lugar para más comentarios.\n\n");
                 system("pause");
             }
         }
-    }*/
+        else if( cantUsuariosHabilitados == 0)
+        {
+            printf("\nNo hay usuarios cargados en el sistema.\n\n");
+            Sleep(SLEEP_TIME);
+        }
+
+    }
 }
 
 
 
-/** \brief
+/** \brief Permite añadir un 'me gusta' a un comentario, verificando usuario y contraseña.
  *
- * \param
- * \param
- * \return
+ * \param usuarios (*usuario) Array de usuarios.
+ * \param largoUsuarios (int) Largo del array.
+ * \param comentarios (*comentario) Array de comentarios.
+ * \param largoComentarios (int) Largo del array.
  *
  */
 void nuevoMeGusta( usuario *usuarios, int largoUsuarios, comentario *comentarios, int largoComentarios )
 {
+    int error;
+    int cantidadUsuarios;
+    int cantidadComentarios;
+    int indexUsuario;
+    int idComentario;
 
+    if( usuarios != NULL && largoUsuarios > 0 && comentarios != NULL && largoComentarios > 0 )
+    {
+        system(CLEAR_SCREEN);
+
+        //Obtengo la cantidad de usuarios habilitados y comentarios creados.
+        cantidadUsuarios = contarUsuariosHabilitados( usuarios, largoUsuarios );
+        cantidadComentarios = contarComentariosCreados( comentarios, largoComentarios );
+
+        if( cantidadUsuarios > 0 ) //Se verifica que haya usuarios cargados.
+        {
+            if( cantidadComentarios > 0 ) //Se verifica que hay comentarios cargados.
+            {
+                indexUsuario = solicitarYVerificarUsuarioClave( usuarios, largoUsuarios, ATTEMPTS );
+
+                if( indexUsuario >= 0 )
+                {
+                    system(CLEAR_SCREEN); //Se lee el ID del comentario al que se le quiere dar 'me gusta'.
+                    error = getInt( &idComentario, "Ingrese el ID del comentario a darle 'me gusta': ", 1, 1, 0, (CANT_COMENTARIOS-1), "Error! Ingrese un id dentro del rango v""\xA0""lido.", ATTEMPTS );
+
+                    if( error == 0)
+                    {
+                        //Agrego el me gusta al comentario indicado
+                        error = agregarMeGusta( comentarios, largoComentarios, idComentario );
+                        if( error == 0 )
+                        {
+                            system(CLEAR_SCREEN);
+                            printf("Nuevo 'me gusta' agregado con exito!");
+                            Sleep(SLEEP_TIME);
+                        }
+                    }
+                }
+            }
+            else if( cantidadComentarios == 0 )
+            {
+                printf("\nNo hay comentarios cargados en el sistema.\n\n");
+                Sleep(SLEEP_TIME);
+            }
+        }
+        else if( cantidadUsuarios == 0 )
+        {
+            printf("\nNo hay usuarios cargados en el sistema.\n\n");
+            Sleep(SLEEP_TIME);
+        }
+
+    }
 }
 
 

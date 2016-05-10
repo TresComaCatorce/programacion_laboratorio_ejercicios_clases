@@ -13,6 +13,6 @@ int buscarLugarLibreUsuarios( usuario *usuarios, int largoUsuarios );
 
 int verificarDisponibilidadNickName( usuario *usuarios, int largoUsuarios, char *elNickName );
 
-int buscaUsuarioPorNickName( usuario *usuarios, int largoUsuarios, char *elNickName );
-
 int solicitarIngresoNuevoUsuario( usuario *usuarios, int largoUsuarios, int index );
+
+int solicitarYVerificarUsuarioClave( usuario *usuarios, int largoUsuarios, int intentos );

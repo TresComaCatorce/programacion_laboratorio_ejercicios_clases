@@ -35,7 +35,9 @@ int main()
                                 "6)Informar\n"
                                 "7)Listar\n"
                                 "8)Salir\n"
-                                , 1, 9, 3, "Error! Ingrese una opcion valida.");
+                                "9)IMPRIMIR LISTADO DE USUARIOS (P/TEST)\n"
+                                "10)IMPRIMIR LISTADO DE COMENTARIOS (P/TEST)\n"
+                                , 1, 10, 3, "Error! Ingrese una opcion valida.");
 
         switch( respuesta )
         {
@@ -56,7 +58,7 @@ int main()
                 break;
 
             case 5:
-                //nuevoMegusta();
+                nuevoMeGusta( usuarios, CANT_USUARIOS, comentarios, CANT_COMENTARIOS );
                 break;
 
             case 6:
@@ -70,6 +72,9 @@ int main()
                 break;
             case 9:
                 imprimirListaUsuarios( usuarios, CANT_USUARIOS );
+                break;
+            case 10:
+                imprimirListaComentarios( comentarios, CANT_COMENTARIOS );
                 break;
         }
 
