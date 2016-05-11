@@ -233,6 +233,7 @@ void nuevoComentario( usuario *usuarios, int largoUsuarios, comentario *comentar
             //Si se verifico el usuario y clave. Y hay lugar libre para el comentario.
             if( indexUsuario >= 0 && indexComentario >= 0 )
             {
+                system(CLEAR_SCREEN);
                 error = getStringConIntentos( auxTextoComentario, 281, "Ingrese el texto del comentario: ", "\nEl comentario debe tener entre 1 y 280 caracteres", 3 );
 
                 if( error == 0 )//Aquí se crea el comentario.
@@ -342,13 +343,11 @@ void informar( usuario *usuarios, int largoUsuarios, comentario *comentarios, in
     {
         error1 = buscarUsuariosConMasComentarios( usuarios, largoUsuarios, comentarios, largoComentarios, indexsUsuariosMasComentarios );
 
-//        printf("%d", error1);
-//        system("pause");
-
         //error2 = buscarComentariosConMasMeGusta();
 
         //error3 = calcularPromediosMeGusta();
 
+        system(CLEAR_SCREEN);
         switch( error1 )
         {
             case 0:
@@ -392,7 +391,66 @@ void informar( usuario *usuarios, int largoUsuarios, comentario *comentarios, in
  */
 void listar( usuario *usuarios, int largoUsuarios, comentario *comentarios, int largoComentarios )
 {
+    int i, j;
+    int cantComentariosCreados;
+    int indexAuxI, indexAuxJ;
+    int elIndex;
+    comentario auxComentario;
 
+    cantComentariosCreados = contarComentariosCreados( comentarios, largoComentarios );
+    if( cantComentariosCreados > 0 )
+    {
+        //Ordeno por dos criterios.
+        for( i=0 ; i<(largoComentarios-1) ; i++ )
+        {
+            for( j=(i+1) ; j<largoComentarios ; j++ )
+            {
+                if( comentarios[i].creado == 1 && comentarios[j].creado )
+                {
+                    indexAuxI = getUsuarioIndexByNickName( usuarios, largoUsuarios, comentarios[i].ownerNickName );
+                    indexAuxJ = getUsuarioIndexByNickName( usuarios, largoUsuarios, comentarios[j].ownerNickName );
+                    if( strcmp( usuarios[indexAuxI].nombreReal , usuarios[indexAuxJ].nombreReal ) < 0 )
+                    {
+                        auxComentario = comentarios[i];
+                        comentarios[i] = comentarios[j];
+                        comentarios[j] = auxComentario;
+                    }
+                    else if( strcmp(comentarios[i].ownerNickName, comentarios[j].ownerNickName) == 0 )
+                    {
+                        if( strcmp(comentarios[i].ownerNickName, comentarios[j].ownerNickName) < 0 )
+                        {
+                            auxComentario = comentarios[i];
+                            comentarios[i] = comentarios[j];
+                            comentarios[j] = auxComentario;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        system(CLEAR_SCREEN);
+        printf("Nombre\t\tNickName\tComentario\tCantidad 'Me Gusta'\n");
+        for( i=0 ; i<largoComentarios ; i++ )
+        {
+            if( comentarios[i].creado == 1 )
+            {
+                elIndex = getUsuarioIndexByNickName( usuarios, largoUsuarios, comentarios[i].ownerNickName );
+                printf("%s\t%s\t%s\t%d\n", usuarios[elIndex].nombreReal, comentarios[i].ownerNickName, comentarios[i].texto, comentarios[i].contadorMeGusta );
+            }
+        }
+
+        printf("\n");
+        printf("\n");
+        system("pause");
+
+    }
+    else if( cantComentariosCreados == 0 )
+    {
+        system(CLEAR_SCREEN);
+        printf("\nNo hay comentarios cargados en el sistema.\n\n");
+        system("pause");
+    }
 }
 
 
@@ -425,12 +483,10 @@ int buscarUsuariosConMasComentarios( usuario *usuarios, int largoUsuarios, comen
 
         if( cantUsuariosHabilitados > 0 && cantComentariosCreados > 0 )
         {
-
             //Inicializo el array en -1.
-            for( i=0 ; i>largoUsuarios ; i ++ )
+            for( i=0 ; i<largoUsuarios ; i ++ )
             {
                 indexs[i] = -1;
-                printf("%d\n", indexs[i]); /***************** NO INICIALIZA EN -1 VER *******************/
             }
 
             //Actualizo la cantidad de comentarios.
@@ -488,3 +544,14 @@ int buscarUsuariosConMasComentarios( usuario *usuarios, int largoUsuarios, comen
 
 
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
+int buscarValorPromedio()
+{
+
+}

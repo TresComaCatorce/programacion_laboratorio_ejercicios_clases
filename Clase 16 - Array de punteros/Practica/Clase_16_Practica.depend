@@ -1,0 +1,49 @@
+# depslib dependency file v1.0
+1462996291 source:/home/mauro/Documentos/workspace_c/Clase_16_Practica/main.c
+	<stdlib.h>
+	<stdio.h>
+	"parser.h"
+	<time.h>
+
+1462995882 /home/mauro/Documentos/workspace_c/Clase_16_Practica/parser.h
+
+1462996071 source:/home/mauro/Documentos/workspace_c/Clase_16_Practica/parser.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"parser.h"
+
+1462996470 source:d:\mauriciodavila\clase_16_practica\main.c
+	<stdlib.h>
+	<stdio.h>
+	<time.h>
+	"parser.h"
+
+1462995882 d:\mauriciodavila\clase_16_practica\parser.h
+
+1462996070 source:d:\mauriciodavila\clase_16_practica\parser.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"parser.h"
+
+1462996070 source:d:\ferrero\ejclases\programacion_laboratorio_ejercicios_clases\clase 16 - array de punteros\practica\parser.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"parser.h"
+
+1462995882 d:\ferrero\ejclases\programacion_laboratorio_ejercicios_clases\clase 16 - array de punteros\practica\parser.h
+
+1463006508 source:d:\ferrero\ejclases\programacion_laboratorio_ejercicios_clases\clase 16 - array de punteros\practica\lib.c
+
+1463006844 source:d:\ferrero\ejclases\programacion_laboratorio_ejercicios_clases\clase 16 - array de punteros\practica\main.c
+	<stdlib.h>
+	<stdio.h>
+	<time.h>
+	<string.h>
+	"parser.h"
+	"lib.h"
+
+1463006817 d:\ferrero\ejclases\programacion_laboratorio_ejercicios_clases\clase 16 - array de punteros\practica\lib.h
+

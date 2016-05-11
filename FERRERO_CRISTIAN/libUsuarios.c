@@ -48,9 +48,12 @@ void cargarUsuariosFake( usuario *usuarios, int largoUsuarios )
 {
     int i;
 
-    char nickNames[6][15] = { "tilllinde04", "paulland78", "richard22", "oliver92", "christian64", "christoph12" };
-    char claves[6][15] = { "hola04", "hola78", "hola22", "hola92", "hola64", "hola12" };
-    char nombres[6][51] = { "Till Lindeman", "Paul Landers", "Richard Kruzpe", "Oliver Riedel", "Christian Lorenz", "Christoph Schneider"};
+    //char nickNames[6][15] = { "tilllinde04", "paulland78", "tilllinde05", "oliver92", "christian64", "christoph12" };
+
+    char nickNames[6][15] = { "aaaaa", "aaaab", "aaaac", "aaaad", "aaaae", "aaaaf" };
+
+    char claves[6][15] = { "aaaa", "aaaa", "aaaa", "aaaa", "aaaa", "aaaa" };
+    char nombres[6][51] = { "Till", "Till", "Paul", "Paul", "Oliver", "Oliver"};
     char correos[6][51] = { "till04@rammstein.com", "paul78@rammstein.com", "richard@rammstein.com", "oliver92@rammstein.com", "christian@rammstein.com", "christop12@rammstein.com" };
 
 

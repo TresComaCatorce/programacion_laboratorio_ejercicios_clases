@@ -27,6 +27,33 @@ void initComentarios( comentario *comentarios, int largoComentarios )
 }
 
 
+/** \brief Carga datos falsos de usuarios para testing.
+ *
+ * \param usuarios (*usuario) Array a cargar.
+ * \param largoUsuarios (int) Largo del array.
+ *
+ */
+void cargarComentariosFake( comentario *comentarios, int largoComentarios )
+{
+    int i;
+
+    char ownersNickNames[6][15] = { "aaaaa", "aaaab", "aaaac", "aaaad", "aaaae", "aaaaf" };
+    char textos[6][281] = { "texto1", "texto2", "texto3", "texto4", "texto5", "texto6" };
+    int meGusta[6] = { 4, 5, 12, 1, 2, 7 };
+
+
+    if( comentarios != NULL && largoComentarios > 0 )
+    {
+        for( i=0 ; i<6 ; i++ )
+        {
+            comentarios[i].creado = 1;
+            comentarios[i].idComentario = i;
+            strcpy( comentarios[i].ownerNickName, ownersNickNames[i] );
+            strcpy( comentarios[i].texto, textos[i] );
+            comentarios[i].contadorMeGusta = meGusta[i];
+        }
+    }
+}
 
 
 /** \brief Imprime en pantalla una lista de los comentarios cargados.
@@ -47,12 +74,12 @@ void imprimirListaComentarios( comentario *comentarios, int largoComentarios )
 
         if( cantidadComentarios > 0 )
         {
-            printf("Nick Name\t\tComentario\t\tMe Gusta\n");
+            printf("ID\tNick Name\t\tComentario\t\tMe Gusta\n");
             for( i=0 ; i<largoComentarios ; i++)
             {
                 if( comentarios[i].creado == 1 )
                 {
-                    printf("%s\t%s\t%d\n", comentarios[i].ownerNickName, comentarios[i].texto, comentarios[i].contadorMeGusta );
+                    printf("%d\t%s\t%s\t%d\n", comentarios[i].idComentario, comentarios[i].ownerNickName, comentarios[i].texto, comentarios[i].contadorMeGusta );
                 }
             }
             printf("\n");

@@ -3,6 +3,8 @@
 
 void initComentarios( comentario *comentarios, int largoComentarios );
 
+void cargarComentariosFake( comentario *comentarios, int largoComentarios );
+
 void imprimirListaComentarios( comentario *comentarios, int largoComentarios );
 
 int contarComentariosCreados( comentario *comentarios, int largoComentarios );

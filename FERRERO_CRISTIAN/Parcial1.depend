@@ -158,3 +158,68 @@
 
 1462971555 /home/Cristian/WorkSpaceC/EjerciciosClases/programacion_laboratorio_ejercicios_clases/FERRERO_CRISTIAN/libComentarios.h
 
+1463001036 source:d:\ferrero\ejclases\programacion_laboratorio_ejercicios_clases\ferrero_cristian\biblioteca.c
+	<stdlib.h>
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+	<windows.h>
+	"biblioteca.h"
+
+1463001036 d:\ferrero\ejclases\programacion_laboratorio_ejercicios_clases\ferrero_cristian\biblioteca.h
+
+1463001036 source:d:\ferrero\ejclases\programacion_laboratorio_ejercicios_clases\ferrero_cristian\estructuras.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"estructuras.h"
+
+1463001036 d:\ferrero\ejclases\programacion_laboratorio_ejercicios_clases\ferrero_cristian\estructuras.h
+
+1463003831 source:d:\ferrero\ejclases\programacion_laboratorio_ejercicios_clases\ferrero_cristian\libcomentarios.c
+	<stdlib.h>
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+	<windows.h>
+	"estructuras.h"
+	"libComentarios.h"
+
+1463001036 d:\ferrero\ejclases\programacion_laboratorio_ejercicios_clases\ferrero_cristian\libcomentarios.h
+
+1463003282 source:d:\ferrero\ejclases\programacion_laboratorio_ejercicios_clases\ferrero_cristian\libusuarios.c
+	<stdlib.h>
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+	<windows.h>
+	"biblioteca.h"
+	"estructuras.h"
+	"libUsuarios.h"
+
+1463001036 d:\ferrero\ejclases\programacion_laboratorio_ejercicios_clases\ferrero_cristian\libusuarios.h
+
+1463003809 source:d:\ferrero\ejclases\programacion_laboratorio_ejercicios_clases\ferrero_cristian\main.c
+	<stdio.h>
+	<stdlib.h>
+	"biblioteca.h"
+	"lib.h"
+	"libUsuarios.h"
+	"libComentarios.h"
+	"estructuras.h"
+
+1463001036 d:\ferrero\ejclases\programacion_laboratorio_ejercicios_clases\ferrero_cristian\lib.h
+	"estructuras.h"
+
+1463003940 source:d:\ferrero\ejclases\programacion_laboratorio_ejercicios_clases\ferrero_cristian\lib.c
+	<stdlib.h>
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+	<windows.h>
+	"estructuras.h"
+	"biblioteca.h"
+	"lib.h"
+	"libUsuarios.h"
+	"libComentarios.h"
+

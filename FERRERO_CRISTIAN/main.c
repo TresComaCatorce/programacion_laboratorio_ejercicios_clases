@@ -20,6 +20,7 @@ int main()
     initComentarios(comentarios, CANT_COMENTARIOS);
 
     cargarUsuariosFake(usuarios, CANT_USUARIOS);
+    cargarComentariosFake(comentarios, CANT_COMENTARIOS);
 
 
 
@@ -65,7 +66,7 @@ int main()
                 informar( usuarios, CANT_USUARIOS, comentarios, CANT_COMENTARIOS );
                 break;
             case 7:
-                //listar();
+                listar( usuarios, CANT_USUARIOS, comentarios, CANT_COMENTARIOS );
                 break;
             case 8:
                 //SALIR;
