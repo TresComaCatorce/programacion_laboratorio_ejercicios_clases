@@ -350,7 +350,17 @@ void informar( usuario *usuarios, int largoUsuarios, comentario *comentarios, in
  */
 void listar( usuario *usuarios, int largoUsuarios, comentario *comentarios, int largoComentarios )
 {
+    int indexsUsuariosMasComentarios[largoUsuarios];
+    int error1, error2, error3;
 
+    if( usuarios != NULL && largoUsuarios > 0 && comentarios != NULL && largoComentarios > 0 )
+    {
+        error1 = buscarUsuariosConMasComentarios( usuarios, largoUsuarios, comentarios, largoComentarios, indexsUsuariosMasComentarios );
+
+        //error2 = buscarComentariosConMasMeGusta();
+
+        //error3 = calcularPromediosMeGusta();
+    }
 }
 
 
@@ -362,13 +372,75 @@ void listar( usuario *usuarios, int largoUsuarios, comentario *comentarios, int 
  * \param largoUsuarios (int) Largo del array 'usuarios'.
  * \param comentarios (*comentario) Array de comentarios.
  * \param largoComentarios (int) Largo del array 'comentarios'.
- * \param indexs (*int) Array donde se guardan los index de los usuarios con más comentarios.
+ * \param indexs (*int) Array donde se guardan los index de los usuarios con más comentarios. Los '-1' son lugares vacios.
  * \return (int) [0]=Busqueda exitosa / [-1]=Argumentos inválidos / [-2]=No hay usuarios cargados.
  *
  */
 int buscarUsuariosConMasComentarios( usuario *usuarios, int largoUsuarios, comentario *comentarios, int largoComentarios , int *indexs )
 {
+    int retorno = -1;
+    int i;
+    int error;
+    int cantUsuariosHabilitados;
+    int cantMaxDeComentarios;
+    int indexs[largoUsuarios];
 
+    if( usuarios != NULL && largoUsuarios > 0 && comentarios != NULL && largoComentarios > 0 && indexs != NULL )
+    {
+        //Obtengo la cantidad de usuarios habilitados.
+        cantUsuariosHabilitados = contarUsuariosHabilitados( usuarios, largoUsuarios );
+
+        if( cantUsuariosHabilitados > 0 )
+        {
+            //Inicializo el array en -1.
+            for( i=0 ; i>largoUsuarios ; i ++ )
+            {
+                indexs[i] = -1;
+            }
+
+            //Actualizo la cantidad de comentarios.
+            error = actualizarCantidadesDeComentarios( usuarios, largoUsuarios, comentarios, largoComentarios );
+
+            if( error == 0 )
+            {
+                //Hallo la cantidad máxima de comentarios.
+                for( i=0 ; i<largoUsuarios ; i++ )
+                {
+                    if( i=0 )
+                    {
+                        cantMaxDeComentarios = usuarios[i].cantidadComentarios;
+                    }
+                    else
+                    {
+                        if( usuarios[i].cantidadComentarios > cantMaxDeComentarios )
+                        {
+                            cantMaxDeComentarios = usuarios[i].cantidadComentarios;
+                        }
+                    }
+                }
+
+                //Una vez hallada la cantidad máxima de comentarios
+                //Busco los usuarios con esa cantidad de comentarios y lo guardo en el array de index.
+                int indexsUsados = 0;
+                for( i=0 ; i<largoUsuarios ; i++ )
+                {
+                    if( usuarios[i].habilitado ==1 && usuarios[i].cantidadComentarios == cantMaxDeComentarios )
+                    {
+                        indexs[indexsUsados] = i;
+                        indexsUsados++;
+                    }
+                }
+
+                retorno = 0;
+            }
+        }
+        else if( cantUsuariosHabilitados == 0 )
+        {
+            retorno = -2;
+        }
+    }
+
+    return retorno;
 }
 
 
