@@ -404,7 +404,7 @@ int actualizarCantidadesDeComentarios( usuario *usuarios, int largoUsuarios, com
         cantUsuariosHabilitados = contarUsuariosHabilitados( usuarios, largoUsuarios );
 
         //Se checkea que existan usuarios habilitados en el sistema.
-        if( cantComentariosCreados > 0 )
+        if( cantUsuariosHabilitados > 0 )
         {
             for( i=0 ; i<largoUsuarios ; i++ )
             {
@@ -414,10 +414,11 @@ int actualizarCantidadesDeComentarios( usuario *usuarios, int largoUsuarios, com
                     usuarios[i].cantidadComentarios = 0;
                 }
             }
+            retorno = 0;
         }
         else if( cantUsuariosHabilitados == 0 )
         {
-            retorno = -2
+            retorno = -2;
         }
     }
 

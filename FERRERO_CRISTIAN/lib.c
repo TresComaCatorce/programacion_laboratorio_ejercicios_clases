@@ -331,8 +331,10 @@ void nuevoMeGusta( usuario *usuarios, int largoUsuarios, comentario *comentarios
  */
 void informar( usuario *usuarios, int largoUsuarios, comentario *comentarios, int largoComentarios )
 {
+    int i;
     int indexsUsuariosMasComentarios[largoUsuarios];
     int indexsComentariosMasMeGusta[largoComentarios];
+    int auxIndex;
     float promedioMeGusta;
     int error1, error2, error3;
 
@@ -340,20 +342,41 @@ void informar( usuario *usuarios, int largoUsuarios, comentario *comentarios, in
     {
         error1 = buscarUsuariosConMasComentarios( usuarios, largoUsuarios, comentarios, largoComentarios, indexsUsuariosMasComentarios );
 
+//        printf("%d", error1);
+//        system("pause");
+
         //error2 = buscarComentariosConMasMeGusta();
 
         //error3 = calcularPromediosMeGusta();
+
+        switch( error1 )
+        {
+            case 0:
+                printf("El/los usuario/s con m""\xA0""s comentarios es/son:\n");
+                for( i=0 ; i<largoUsuarios ; i++ )
+                {
+
+                    if( indexsUsuariosMasComentarios[i] >= 0 && indexsUsuariosMasComentarios[i] >= 0 )
+                    {
+                        auxIndex = indexsUsuariosMasComentarios[i];
+                        printf("%s\n", usuarios[auxIndex].nickName );
+                    }
+                }
+                printf("\n");
+                system("pause");
+                break;
+            case -3:
+                printf("\n\nNo hay comentarios.");
+                system("pause");
+                break;
+        }
         if( error1 == 0 )
         {
-            printf("El/los usuario/s con m""\xA0""s comentarios es/son:\n");
-            for( i=0 ; i<largoUsuarios ; i++ )
-            {
-                if( indexsUsuariosMasComentarios[i] >= 0 )
-                {
-                    int elIndex = indexsUsuariosMasComentarios[i];
-                    printf("%s\n", usuarios[elIndex].nickName );
-                }
-            }
+
+        }
+        else if( error2 == -3 )
+        {
+
         }
     }
 }
@@ -382,7 +405,7 @@ void listar( usuario *usuarios, int largoUsuarios, comentario *comentarios, int 
  * \param comentarios (*comentario) Array de comentarios.
  * \param largoComentarios (int) Largo del array 'comentarios'.
  * \param indexs (*int) Array donde se guardan los index de los usuarios con más comentarios. Los '-1' son lugares vacios.
- * \return (int) [0]=Busqueda exitosa / [-1]=Argumentos inválidos / [-2]=No hay usuarios cargados.
+ * \return (int) [0]=Busqueda exitosa / [-1]=Argumentos inválidos / [-2]=No hay usuarios cargados / [-3]= No hay comentarios.
  *
  */
 int buscarUsuariosConMasComentarios( usuario *usuarios, int largoUsuarios, comentario *comentarios, int largoComentarios , int *indexs )
@@ -391,20 +414,23 @@ int buscarUsuariosConMasComentarios( usuario *usuarios, int largoUsuarios, comen
     int i;
     int error;
     int cantUsuariosHabilitados;
-    int cantMaxDeComentarios;
-    int indexs[largoUsuarios];
+    int cantComentariosCreados;
+    int cantMaxDeComentarios = 0;
 
     if( usuarios != NULL && largoUsuarios > 0 && comentarios != NULL && largoComentarios > 0 && indexs != NULL )
     {
         //Obtengo la cantidad de usuarios habilitados.
         cantUsuariosHabilitados = contarUsuariosHabilitados( usuarios, largoUsuarios );
+        cantComentariosCreados = contarComentariosCreados( comentarios, largoComentarios );
 
-        if( cantUsuariosHabilitados > 0 )
+        if( cantUsuariosHabilitados > 0 && cantComentariosCreados > 0 )
         {
+
             //Inicializo el array en -1.
             for( i=0 ; i>largoUsuarios ; i ++ )
             {
                 indexs[i] = -1;
+                printf("%d\n", indexs[i]); /***************** NO INICIALIZA EN -1 VER *******************/
             }
 
             //Actualizo la cantidad de comentarios.
@@ -415,37 +441,43 @@ int buscarUsuariosConMasComentarios( usuario *usuarios, int largoUsuarios, comen
                 //Hallo la cantidad máxima de comentarios.
                 for( i=0 ; i<largoUsuarios ; i++ )
                 {
-                    if( i=0 )
+                    if( usuarios[i].habilitado == 1 && usuarios[i].cantidadComentarios > cantMaxDeComentarios )
                     {
                         cantMaxDeComentarios = usuarios[i].cantidadComentarios;
                     }
-                    else
+                }
+
+
+                if( cantMaxDeComentarios > 0 )
+                {
+                    //Una vez hallada la cantidad máxima de comentarios
+                    //Busco los usuarios con esa cantidad de comentarios y lo guardo en el array de index.
+                    int indexsUsados = 0;
+                    for( i=0 ; i<largoUsuarios ; i++ )
                     {
-                        if( usuarios[i].cantidadComentarios > cantMaxDeComentarios )
+                        if( usuarios[i].habilitado ==1 && usuarios[i].cantidadComentarios == cantMaxDeComentarios )
                         {
-                            cantMaxDeComentarios = usuarios[i].cantidadComentarios;
+                            indexs[indexsUsados] = i;
+                            indexsUsados++;
                         }
                     }
-                }
 
-                //Una vez hallada la cantidad máxima de comentarios
-                //Busco los usuarios con esa cantidad de comentarios y lo guardo en el array de index.
-                int indexsUsados = 0;
-                for( i=0 ; i<largoUsuarios ; i++ )
+                    retorno = 0;
+                }
+                else if( cantMaxDeComentarios == 0 )
                 {
-                    if( usuarios[i].habilitado ==1 && usuarios[i].cantidadComentarios == cantMaxDeComentarios )
-                    {
-                        indexs[indexsUsados] = i;
-                        indexsUsados++;
-                    }
+                    retorno = -3;
                 }
 
-                retorno = 0;
             }
         }
         else if( cantUsuariosHabilitados == 0 )
         {
             retorno = -2;
+        }
+        else if( cantComentariosCreados == 0 )
+        {
+            retorno = -3;
         }
     }
 
