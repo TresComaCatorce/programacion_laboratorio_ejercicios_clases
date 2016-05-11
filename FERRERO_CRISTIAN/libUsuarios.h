@@ -16,3 +16,7 @@ int verificarDisponibilidadNickName( usuario *usuarios, int largoUsuarios, char 
 int solicitarIngresoNuevoUsuario( usuario *usuarios, int largoUsuarios, int index );
 
 int solicitarYVerificarUsuarioClave( usuario *usuarios, int largoUsuarios, int intentos );
+
+int actualizarCantidadesDeComentarios( usuario *usuarios, int largoUsuarios, comentario *comentarios, int largoComentarios );
+
+ int setComentariosEnCero( usuario *usuarios, int largoUsuarios );

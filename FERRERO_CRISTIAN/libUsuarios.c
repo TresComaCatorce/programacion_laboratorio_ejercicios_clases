@@ -198,7 +198,7 @@ int verificarDisponibilidadNickName( usuario *usuarios, int largoUsuarios, char 
  * \param usuarios (*usuario) Array de usuarios donde se va a guardar el nuevo usuario.
  * \param largoUsuarios (int) Largo del array.
  * \param index (int) Indice del array donde se debe cargar el nuevo usuario.
- * \return [0]=Carga exitosa / [-1]=Error al cargar.
+ * \return (int) [0]=Carga exitosa / [-1]=Error al cargar.
  *
  */
 int solicitarIngresoNuevoUsuario( usuario *usuarios, int largoUsuarios, int index )
@@ -333,6 +333,93 @@ int solicitarYVerificarUsuarioClave( usuario *usuarios, int largoUsuarios, int i
 }
 
 
+/** \brief Actualiza la cantidad de comentarios de todos los usuarios.
+ *
+ * \param usuarios (*usuario) Array de usuarios.
+ * \param largoUsuarios (int) Largo del array 'usuarios'.
+ * \param comentarios (*comentario) Array de comentarios.
+ * \param largoComentarios (int) Largo del array 'comentarios'.
+ * \return (int) [0]=Actualización exitosa /[-1]=Argumentos inválidos.
+ *
+ */
+int actualizarCantidadesDeComentarios( usuario *usuarios, int largoUsuarios, comentario *comentarios, int largoComentarios )
+{
+    int retorno = -1;
+    int i;
+    char auxNickName[15]; //Auxiliar utilizado para obtener el autor del comentario.
+    int indexUsuarioAutor;
+    int error;
+
+    if( usuarios != NULL && largoUsuarios > 0 && comentarios != NULL && largoComentarios > 0 )
+    {
+        //Se pone en cero la cantidad de comentarios de cada usuario habilitado.
+        error = setComentariosEnCero( usuarios, largoUsuarios );
+
+        if( error == 0 )
+        {
+            for( i=0 ; i<largoComentarios ; i++ )
+            {
+                if( comentarios[i].creado == 1 )
+                {
+                    //Obtengo el autor del comentario.
+                    strcpy( auxNickName , comentarios[i].ownerNickName );
+
+                    //Obtengo el index del usuario que realizó el comentario.
+                    indexUsuarioAutor = getUsuarioIndexByNickName( usuarios, largoUsuarios, auxNickName );
+
+                    if( indexUsuarioAutor >= 0 )
+                    {
+                        //Aumento en 1 la cantidad de comentarios de ese usuario.
+                        usuarios[indexUsuarioAutor].cantidadComentarios++;
+                    }
+                }
+            }
+
+            retorno = 0;
+        }
+    }
+
+    return retorno;
+}
 
 
 
+
+/** \brief Setea el campo 'cantidadComentarios' en 0. Función utilizada para la actualización de la cantidad de comentarios.
+ *
+ * \param usuarios (*usuario) Array de usuarios.
+ * \param largoUsuarios (int) Largo del array.
+ * \return [0]=Exito al setear / [-1]=Argumentos inválidos / [-2]=No hay usuarios cargados en el sistema.
+ *
+ */
+ int setComentariosEnCero( usuario *usuarios, int largoUsuarios )
+ {
+    int retorno = -1;
+    int cantUsuariosHabilitados;
+    int i;
+
+    if( usuarios != NULL && largoUsuarios > 0 )
+    {
+        //Obtengo la cantidad de usuarios habilitados.
+        cantUsuariosHabilitados = contarUsuariosHabilitados( usuarios, largoUsuarios );
+
+        //Se checkea que existan usuarios habilitados en el sistema.
+        if( cantComentariosCreados > 0 )
+        {
+            for( i=0 ; i<largoUsuarios ; i++ )
+            {
+                //Si esta habilitado seteo la cantidad de comentarios en 0.
+                if( usuarios[i].habilitado == 1 )
+                {
+                    usuarios[i].cantidadComentarios = 0;
+                }
+            }
+        }
+        else if( cantUsuariosHabilitados == 0 )
+        {
+            retorno = -2
+        }
+    }
+
+    return retorno;
+ }

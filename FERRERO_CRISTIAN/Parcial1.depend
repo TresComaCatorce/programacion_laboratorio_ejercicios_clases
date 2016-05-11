@@ -124,3 +124,37 @@
 	<string.h>
 	"estructuras.h"
 
+1462971555 source:/home/Cristian/WorkSpaceC/EjerciciosClases/programacion_laboratorio_ejercicios_clases/FERRERO_CRISTIAN/biblioteca.c
+	<stdlib.h>
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+	<windows.h>
+	"biblioteca.h"
+
+1462971555 /home/Cristian/WorkSpaceC/EjerciciosClases/programacion_laboratorio_ejercicios_clases/FERRERO_CRISTIAN/biblioteca.h
+
+1462971555 source:/home/Cristian/WorkSpaceC/EjerciciosClases/programacion_laboratorio_ejercicios_clases/FERRERO_CRISTIAN/estructuras.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"estructuras.h"
+
+1462971555 /home/Cristian/WorkSpaceC/EjerciciosClases/programacion_laboratorio_ejercicios_clases/FERRERO_CRISTIAN/estructuras.h
+
+1462971555 source:/home/Cristian/WorkSpaceC/EjerciciosClases/programacion_laboratorio_ejercicios_clases/FERRERO_CRISTIAN/main.c
+	<stdio.h>
+	<stdlib.h>
+	"biblioteca.h"
+	"lib.h"
+	"libUsuarios.h"
+	"libComentarios.h"
+	"estructuras.h"
+
+1462979354 /home/Cristian/WorkSpaceC/EjerciciosClases/programacion_laboratorio_ejercicios_clases/FERRERO_CRISTIAN/lib.h
+	"estructuras.h"
+
+1462979881 /home/Cristian/WorkSpaceC/EjerciciosClases/programacion_laboratorio_ejercicios_clases/FERRERO_CRISTIAN/libUsuarios.h
+
+1462971555 /home/Cristian/WorkSpaceC/EjerciciosClases/programacion_laboratorio_ejercicios_clases/FERRERO_CRISTIAN/libComentarios.h
+

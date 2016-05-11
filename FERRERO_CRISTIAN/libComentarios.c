@@ -134,7 +134,7 @@ int crearComentario( comentario *comentarios, int largoComentarios, int indexToC
 
 /** \brief Busca una posición libre en el array de comentarios.
  *
- * \param comentarios (*comentario) Array de usuarios donde se busca la posición libre.
+ * \param comentarios (*comentario) Array de comentarios donde se busca la posición libre.
  * \param largoComentarios (int) Largo del array.
  * \return (int) Subindice libre del array / [-1]=Si no hay lugar disponible
  *
@@ -190,3 +190,8 @@ int agregarMeGusta( comentario *comentarios, int largoComentarios, int indexToAd
 
     return retorno;
 }
+
+
+
+
+

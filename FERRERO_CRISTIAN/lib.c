@@ -225,7 +225,7 @@ void nuevoComentario( usuario *usuarios, int largoUsuarios, comentario *comentar
         cantUsuariosHabilitados = contarUsuariosHabilitados( usuarios, largoUsuarios );
 
         //Se verifica que existan usuarios habilitados
-        if( cantUsuariosHabilitados >= 0 )
+        if( cantUsuariosHabilitados > 0 )
         {
             indexComentario = buscarLugarLibreComentarios( comentarios, largoComentarios );
             indexUsuario = solicitarYVerificarUsuarioClave( usuarios, largoUsuarios, ATTEMPTS );
@@ -331,6 +331,11 @@ void nuevoMeGusta( usuario *usuarios, int largoUsuarios, comentario *comentarios
  */
 void informar( usuario *usuarios, int largoUsuarios, comentario *comentarios, int largoComentarios )
 {
+    int indexUsuarioMasComentarios[largoUsuarios];
+    int indexComentarioMasMeGusta[largoComentarios];
+    float promedioMeGusta;
+
+
 
 }
 
@@ -347,6 +352,25 @@ void listar( usuario *usuarios, int largoUsuarios, comentario *comentarios, int 
 {
 
 }
+
+
+
+
+/** \brief Busca los subíndices de los usuarios con mayor cantidad de comentarios.
+ *
+ * \param usuarios (*usuario) Array de usuarios.
+ * \param largoUsuarios (int) Largo del array 'usuarios'.
+ * \param comentarios (*comentario) Array de comentarios.
+ * \param largoComentarios (int) Largo del array 'comentarios'.
+ * \param indexs (*int) Array donde se guardan los index de los usuarios con más comentarios.
+ * \return (int) [0]=Busqueda exitosa / [-1]=Argumentos inválidos / [-2]=No hay usuarios cargados.
+ *
+ */
+int buscarUsuariosConMasComentarios( usuario *usuarios, int largoUsuarios, comentario *comentarios, int largoComentarios , int *indexs )
+{
+
+}
+
 
 
 
