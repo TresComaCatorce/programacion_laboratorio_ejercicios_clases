@@ -62,7 +62,7 @@ int main()
                 break;
 
             case 6:
-                //informar();
+                informar( usuarios, CANT_USUARIOS, comentarios, CANT_COMENTARIOS );
                 break;
             case 7:
                 //listar();

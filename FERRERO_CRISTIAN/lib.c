@@ -331,12 +331,31 @@ void nuevoMeGusta( usuario *usuarios, int largoUsuarios, comentario *comentarios
  */
 void informar( usuario *usuarios, int largoUsuarios, comentario *comentarios, int largoComentarios )
 {
-    int indexUsuarioMasComentarios[largoUsuarios];
-    int indexComentarioMasMeGusta[largoComentarios];
+    int indexsUsuariosMasComentarios[largoUsuarios];
+    int indexsComentariosMasMeGusta[largoComentarios];
     float promedioMeGusta;
+    int error1, error2, error3;
 
+    if( usuarios != NULL && largoUsuarios > 0 && comentarios != NULL && largoComentarios > 0 )
+    {
+        error1 = buscarUsuariosConMasComentarios( usuarios, largoUsuarios, comentarios, largoComentarios, indexsUsuariosMasComentarios );
 
+        //error2 = buscarComentariosConMasMeGusta();
 
+        //error3 = calcularPromediosMeGusta();
+        if( error1 == 0 )
+        {
+            printf("El/los usuario/s con m""\xA0""s comentarios es/son:\n");
+            for( i=0 ; i<largoUsuarios ; i++ )
+            {
+                if( indexsUsuariosMasComentarios[i] >= 0 )
+                {
+                    int elIndex = indexsUsuariosMasComentarios[i];
+                    printf("%s\n", usuarios[elIndex].nickName );
+                }
+            }
+        }
+    }
 }
 
 
@@ -350,17 +369,7 @@ void informar( usuario *usuarios, int largoUsuarios, comentario *comentarios, in
  */
 void listar( usuario *usuarios, int largoUsuarios, comentario *comentarios, int largoComentarios )
 {
-    int indexsUsuariosMasComentarios[largoUsuarios];
-    int error1, error2, error3;
 
-    if( usuarios != NULL && largoUsuarios > 0 && comentarios != NULL && largoComentarios > 0 )
-    {
-        error1 = buscarUsuariosConMasComentarios( usuarios, largoUsuarios, comentarios, largoComentarios, indexsUsuariosMasComentarios );
-
-        //error2 = buscarComentariosConMasMeGusta();
-
-        //error3 = calcularPromediosMeGusta();
-    }
 }
 
 
