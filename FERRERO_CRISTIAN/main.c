@@ -36,7 +36,7 @@ int main()
                                 "6)Informar\n"
                                 "7)Listar\n"
                                 "8)Salir\n"
-                                "9)IMPRIMIR LISTADO DE USUARIOS (P/TEST)\n"
+                                "\n9)IMPRIMIR LISTADO DE USUARIOS (P/TEST)\n"
                                 "10)IMPRIMIR LISTADO DE COMENTARIOS (P/TEST)\n"
                                 , 1, 10, 3, "Error! Ingrese una opcion valida.");
 

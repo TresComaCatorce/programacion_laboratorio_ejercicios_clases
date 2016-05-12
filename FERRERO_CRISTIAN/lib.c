@@ -334,18 +334,18 @@ void informar( usuario *usuarios, int largoUsuarios, comentario *comentarios, in
 {
     int i;
     int indexsUsuariosMasComentarios[largoUsuarios];
-    int indexsComentariosMasMeGusta[largoComentarios];
+    //int indexsComentariosMasMeGusta[largoComentarios];
     int auxIndex;
     float promedioMeGusta;
-    int error1, error2, error3;
+    int error1, error2;
 
     if( usuarios != NULL && largoUsuarios > 0 && comentarios != NULL && largoComentarios > 0 )
     {
         error1 = buscarUsuariosConMasComentarios( usuarios, largoUsuarios, comentarios, largoComentarios, indexsUsuariosMasComentarios );
 
-        //error2 = buscarComentariosConMasMeGusta();
+        //error2 = buscarComentariosConMasMeGusta( );
 
-        //error3 = calcularPromediosMeGusta();
+        error2 = buscarPromedioDeLikes( comentarios, largoComentarios, &promedioMeGusta);
 
         system(CLEAR_SCREEN);
         switch( error1 )
@@ -361,22 +361,18 @@ void informar( usuario *usuarios, int largoUsuarios, comentario *comentarios, in
                         printf("%s\n", usuarios[auxIndex].nickName );
                     }
                 }
-                printf("\n");
-                system("pause");
                 break;
             case -3:
                 printf("\n\nNo hay comentarios.");
                 system("pause");
                 break;
         }
-        if( error1 == 0 )
+        if( error2 == 0 )
         {
-
+            printf("\n\nEl promedio de 'me gusta' es: %.2f", promedioMeGusta);
         }
-        else if( error2 == -3 )
-        {
-
-        }
+        printf("\n\n");
+        system("pause");
     }
 }
 
@@ -436,7 +432,7 @@ void listar( usuario *usuarios, int largoUsuarios, comentario *comentarios, int 
             if( comentarios[i].creado == 1 )
             {
                 elIndex = getUsuarioIndexByNickName( usuarios, largoUsuarios, comentarios[i].ownerNickName );
-                printf("%s\t%s\t%s\t%d\n", usuarios[elIndex].nombreReal, comentarios[i].ownerNickName, comentarios[i].texto, comentarios[i].contadorMeGusta );
+                printf("%s\t\t%s\t\t%s\t\t\t%d\n", usuarios[elIndex].nombreReal, comentarios[i].ownerNickName, comentarios[i].texto, comentarios[i].contadorMeGusta );
             }
         }
 
@@ -544,14 +540,35 @@ int buscarUsuariosConMasComentarios( usuario *usuarios, int largoUsuarios, comen
 
 
 
-/** \brief
+/** \brief Calcula el promedio de likes (cantidad de 'me gusta' / cantidad de comentarios)
  *
  * \param
  * \param
- * \return
+ * \return [0]=Promedio / [-1]=
  *
  */
-int buscarValorPromedio()
+int buscarPromedioDeLikes( comentario *comentarios, int largoComentarios, float *promedio )
 {
+    int retorno = -1;
+    int i;
+    int cantidadComentarios;
+    int acumuladorLikes = 0;
 
+    if( comentarios != NULL && largoComentarios > 0 )
+    {
+        cantidadComentarios = contarComentariosCreados( comentarios, largoComentarios );
+        for( i=0 ; i<largoComentarios ; i++ )
+        {
+            if( comentarios[i].creado == 1 )
+            {
+                acumuladorLikes = acumuladorLikes + comentarios[i].contadorMeGusta;
+            }
+        }
+
+        *promedio = acumuladorLikes / cantidadComentarios;
+
+        retorno = 0;
+    }
+
+    return retorno;
 }

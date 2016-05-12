@@ -185,7 +185,7 @@
 	"estructuras.h"
 	"libComentarios.h"
 
-1463001036 d:\ferrero\ejclases\programacion_laboratorio_ejercicios_clases\ferrero_cristian\libcomentarios.h
+1463004143 d:\ferrero\ejclases\programacion_laboratorio_ejercicios_clases\ferrero_cristian\libcomentarios.h
 
 1463003282 source:d:\ferrero\ejclases\programacion_laboratorio_ejercicios_clases\ferrero_cristian\libusuarios.c
 	<stdlib.h>
@@ -199,7 +199,7 @@
 
 1463001036 d:\ferrero\ejclases\programacion_laboratorio_ejercicios_clases\ferrero_cristian\libusuarios.h
 
-1463003809 source:d:\ferrero\ejclases\programacion_laboratorio_ejercicios_clases\ferrero_cristian\main.c
+1463010825 source:d:\ferrero\ejclases\programacion_laboratorio_ejercicios_clases\ferrero_cristian\main.c
 	<stdio.h>
 	<stdlib.h>
 	"biblioteca.h"
@@ -208,7 +208,7 @@
 	"libComentarios.h"
 	"estructuras.h"
 
-1463001036 d:\ferrero\ejclases\programacion_laboratorio_ejercicios_clases\ferrero_cristian\lib.h
+1463010565 d:\ferrero\ejclases\programacion_laboratorio_ejercicios_clases\ferrero_cristian\lib.h
 	"estructuras.h"
 
 1463003940 source:d:\ferrero\ejclases\programacion_laboratorio_ejercicios_clases\ferrero_cristian\lib.c

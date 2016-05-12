@@ -19,3 +19,5 @@ void informar( usuario *usuarios, int largoUsuarios, comentario *comentarios, in
 void listar( usuario *usuarios, int largoUsuarios, comentario *comentarios, int largoComentarios );
 
 int buscarUsuariosConMasComentarios( usuario *usuarios, int largoUsuarios, comentario *comentarios, int largoComentarios , int *indexs );
+
+int buscarPromedioDeLikes( comentario *comentarios, int largoComentarios, float *promedio );
