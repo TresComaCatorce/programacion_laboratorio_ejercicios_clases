@@ -9,7 +9,8 @@ typedef struct{
     int duracion;
     char descripcion[50];
     int puntaje;
-    char linkImagen[50];
+    char linkImagen[150];
+    int estado;
 }sMovie;
 
 #endif

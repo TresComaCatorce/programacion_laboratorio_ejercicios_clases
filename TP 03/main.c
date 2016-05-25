@@ -1,10 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-#include "estructuras.h"
 #include "libTp3.h"
-
-#include "../Bibliotecas/Utiles/Utiles.h"
 
 
 int main()
@@ -13,13 +7,18 @@ int main()
     int size = 10;
     sMovie *peliculas=(sMovie*)malloc( sizeof(sMovie) * size );
 
+    FILE *pArch = fopen("movies.dat", "r+b");
+
+    initMovies(peliculas, size);
+
     do
     {
-        opcion = buildMenu("1)Agregar pel""\xA1""cula"
-                          "2)Borrar pel""\xA1""cula"
-                          "3)Modificar pel""\xA1""cula"
-                          "4)Generar p""A0""gina web"
-                          "5)Salir", 1, 5, 3, "Error! Opci""\xA2""n inv""\xA0""lida.");
+        opcion = buildMenu("1)Agregar pel""\xA1""cula\n"
+                          "2)Borrar pel""\xA1""cula\n"
+                          "3)Modificar pel""\xA1""cula\n"
+                          "4)Generar p""\xA0""gina web\n"
+                          "5)Salir\n"
+                          "6)(TO TEST)Imprimir lista peliculas", 1, 6, 3, "Error! Opci""\xA2""n inv""\xA0""lida.");
 
 
         switch(opcion)
@@ -37,6 +36,9 @@ int main()
                 //generarPagina();
                 break;
             case 5:
+                break;
+            case 6:
+                imprimirListaPeliculas( peliculas, size );
                 break;
         }
 

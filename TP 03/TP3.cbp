@@ -36,12 +36,6 @@
 		</Unit>
 		<Unit filename="../Bibliotecas/Utiles/Utiles.h" />
 		<Unit filename="estructuras.h" />
-		<Unit filename="funciones.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="funciones.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
 		<Unit filename="libTp3.c">
 			<Option compilerVar="CC" />
 		</Unit>
