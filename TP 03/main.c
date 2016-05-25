@@ -1,43 +1,46 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "funciones.h"
 
-typedef struct{
-    char titulo[20];
-    char genero[20];
-    int duracion;
-    char descripcion[50];
-    int puntaje;
-    char linkImagen[50];
-}EMovie;
+#include "estructuras.h"
+#include "libTp3.h"
+
+#include "../Bibliotecas/Utiles/Utiles.h"
+
 
 int main()
 {
-    char seguir='s';
-    int opcion=0;
+    int opcion;
+    int size = 10;
+    sMovie *peliculas=(sMovie*)malloc( sizeof(sMovie) * size );
 
-    while(seguir=='s')
+    do
     {
-        printf("1- Agregar pelicula\n");
-        printf("2- Borrar pelicula\n");
-        printf("3- Generar pagina web\n");
-        printf("4- Salir\n");
+        opcion = buildMenu("1)Agregar pel""\xA1""cula"
+                          "2)Borrar pel""\xA1""cula"
+                          "3)Modificar pel""\xA1""cula"
+                          "4)Generar p""A0""gina web"
+                          "5)Salir", 1, 5, 3, "Error! Opci""\xA2""n inv""\xA0""lida.");
 
-        scanf("%d",&opcion);
 
         switch(opcion)
         {
             case 1:
+                //agregarPelicula();
                 break;
             case 2:
+                //borrarPelicula();
                 break;
             case 3:
+                //modificarPelicula();
                break;
             case 4:
-                seguir = 'n';
+                //generarPagina();
+                break;
+            case 5:
                 break;
         }
-    }
+
+    }while( opcion != 5 );
 
     return 0;
 }
