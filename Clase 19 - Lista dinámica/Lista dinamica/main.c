@@ -1,8 +1,11 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "includes.h"
 
 int main()
 {
-    printf("Hello world!\n");
+    int error;
+
+    printf("Pruebas del array list\n\n");
+
+
     return 0;
 }
