@@ -4,8 +4,17 @@ int main()
 {
     int error;
 
-    printf("Pruebas del array list\n\n");
+    int num;
+    int *p;
+    int **q;
 
+    p = &num;
+
+    *p = 5;
+
+    *q = p;
+
+    printf("%d", **q);
 
     return 0;
 }
