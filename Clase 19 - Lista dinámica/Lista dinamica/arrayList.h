@@ -13,7 +13,7 @@
 #include "arrayList.h"
 
 typedef struct{
-    int sizeAL;
+    int size;
     void **pElements;
     int reservedSize;
 
@@ -35,5 +35,47 @@ typedef struct{
     int (*deleteArrayList)();
 
 }ArrayList;
+
+ArrayList* al_newArrayList(void);
+
+int al_add( ArrayList* pList, void* pElemento );
+
+int al_deleteArrayList(ArrayList* pList);
+
+void* al_get(ArrayList* pList , int index);
+
+int al_len( ArrayList* pList );
+
+int al_len( ArrayList* pList );
+
+int al_set(ArrayList* pList, int index, void* pElement);
+
+int al_remove( ArrayList* pList, int index );
+
+ArrayList* al_clone(ArrayList* pList);
+
+int al_clear( ArrayList* pList );
+
+int al_clear( ArrayList* pList );
+
+int al_indexOf(ArrayList* pList, void* pElement);
+
+int al_isEmpty( ArrayList* pList );
+
+int al_isEmpty( ArrayList* pList );
+
+ArrayList* al_subList( ArrayList* pList, int from, int to );
+
+int al_containsAll( ArrayList* pList, ArrayList* pList2 );
+
+int al_sort( ArrayList* pList, int (*pFunc)(void* ,void*), int order );
+
+int resizeUp(ArrayList* pList);
+
+int resizeDown( ArrayList* pList );
+
+int contract( ArrayList* pList, int index );
+
+int expand( ArrayList* pList, int index);
 
 #endif

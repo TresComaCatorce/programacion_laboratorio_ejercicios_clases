@@ -7,7 +7,7 @@
  * \return
  *
  */
-arrayList* al_newArrayList(void)
+ArrayList* al_newArrayList(void)
 {
     ArrayList* pList;
     ArrayList* retorno = NULL;
@@ -143,7 +143,7 @@ void* al_get(ArrayList* pList , int index)
  * \return
  *
  */
-int al_len( arrayList* pList )
+int al_len( ArrayList* pList )
 {
     int retorno = -1;
 
@@ -643,6 +643,36 @@ int expand( ArrayList* pList, int index)
         }
         pList->size++;
         retorno = 0;
+    }
+
+    return retorno;
+}
+
+
+
+/** \brief
+ *
+ * \param pList (ArrayList*) Arraylist que contiene los elementos.
+ * \param pFunc (pFunc*) Función que deberá devolver 1 si el elemento pasado como parámetro debe ser incluido en la copia del AL.
+ * \return (ArrayList*) Puntero al nuevo AL que contiene los elementos filtrados por la función 'pFunc'.
+ *
+ */
+ArrayList* al_filter( ArrayList* pList, int (*pFunc)(void*) )
+{
+    ArrayList* retorno = NULL;
+    int i;
+
+    if( pList != NULL && pFunc != NULL)
+    {
+        retorno = al_newArrayList();
+
+        for( i=0 ; i<pList->size ; i++ )
+        {
+            if( pFunc(pList->pElements[i]) == 1)
+            {
+                retorno->add( retorno , pList->pElements[i] );
+            }
+        }
     }
 
     return retorno;
