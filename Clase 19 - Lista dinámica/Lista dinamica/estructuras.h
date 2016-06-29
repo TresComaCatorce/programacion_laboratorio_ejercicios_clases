@@ -2,6 +2,6 @@
 typedef struct
 {
     int ply_id;
-    char[10] ply_nick;
+    char ply_nick[10];
     float ply_rango;
 }sPlayer;

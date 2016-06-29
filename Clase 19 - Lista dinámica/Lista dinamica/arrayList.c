@@ -535,7 +535,7 @@ int resizeUp(ArrayList* pList)
 {
     int retorno = -1;
     int auxSize = 0;
-    void* auxPelement;retorno
+    void* auxPelement;
     int auxNewSize = 0;
 
     if(pList !=NULL)

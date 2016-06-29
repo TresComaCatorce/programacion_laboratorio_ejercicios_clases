@@ -46,7 +46,7 @@ void* al_get(ArrayList* pList , int index);
 
 int al_len( ArrayList* pList );
 
-int al_len( ArrayList* pList );
+int al_contains(ArrayList* pList, void* pElement);
 
 int al_set(ArrayList* pList, int index, void* pElement);
 
@@ -56,13 +56,13 @@ ArrayList* al_clone(ArrayList* pList);
 
 int al_clear( ArrayList* pList );
 
-int al_clear( ArrayList* pList );
+int al_push( ArrayList* pList, int index, void* pElement );
 
 int al_indexOf(ArrayList* pList, void* pElement);
 
 int al_isEmpty( ArrayList* pList );
 
-int al_isEmpty( ArrayList* pList );
+void* al_pop( ArrayList* pList, int index );
 
 ArrayList* al_subList( ArrayList* pList, int from, int to );
 
@@ -77,5 +77,7 @@ int resizeDown( ArrayList* pList );
 int contract( ArrayList* pList, int index );
 
 int expand( ArrayList* pList, int index);
+
+void* al_pop( ArrayList* pList, int index );
 
 #endif

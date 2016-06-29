@@ -23,7 +23,7 @@ void run(void)
         }
 
 
-    }while();
+    }while(opcion!=5);
 }
 
 

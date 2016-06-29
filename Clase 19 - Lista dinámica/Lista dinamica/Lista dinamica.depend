@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1467160337 source:d:\ferrero\programacion_laboratorio_ejercicios_clases\clase 19 - lista dinámica\lista dinamica\arraylist.c
+	"arrayList.h"
+
+1467160315 d:\ferrero\programacion_laboratorio_ejercicios_clases\clase 19 - lista dinámica\lista dinamica\arraylist.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arrayList.h"
+
