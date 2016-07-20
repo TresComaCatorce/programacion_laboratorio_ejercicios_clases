@@ -1,0 +1,38 @@
+# depslib dependency file v1.0
+1468536738 source:d:\ferrerocristian\auto.c
+	"includes.h"
+
+1468538493 d:\ferrerocristian\includes.h
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<windows.h>
+	<string.h>
+	"Auto.h"
+	"final.h"
+	"UtilesV2.h"
+
+1468536728 d:\ferrerocristian\auto.h
+
+1468540759 source:d:\ferrerocristian\main.c
+	"includes.h"
+
+1468540673 d:\ferrerocristian\final.h
+
+1468537523 d:\ferrerocristian\utilesv2.h
+	<stdlib.h>
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+
+1468540630 source:d:\ferrerocristian\final.c
+	"includes.h"
+
+1468537523 source:d:\ferrerocristian\utilesv2.c
+	<stdlib.h>
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+	<windows.h>
+	"UtilesV2.h"
+
